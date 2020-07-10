@@ -11,37 +11,20 @@ import java.util.List;
 @RestController
 public class RestaurantController {
 
+  //UI Layer는 사용자와 내부의 비지니스로직들이 서로 상관 없도록, 중간 징검다리 역할만 하는 코드만 들어가도록 한다.
+  //뭔가 처리해야하는 부분들은 domain Layer에서 처리한다.
+
   private RestaurantsRepository repository = new RestaurantsRepository();
 
   @GetMapping("/restaurants")
   public List<Restaurant> list() {
-
-//    List<Restaurant> restaurants = new ArrayList<>();
-//    restaurants.add(new Restaurant(1004L, "Bob zip", "seoul"));
     List<Restaurant> restaurants = repository.findAll();
-
-
     return restaurants;
   }
 
   @GetMapping("/restaurants/{id}")
   public Restaurant detail(@PathVariable("id") Long id) {
-//    List<Restaurant> restaurants = new ArrayList<>();
-//    restaurants.add(new Restaurant(1004L, "Bob zip", "seoul"));
-//    restaurants.add(new Restaurant(2020L, "Cyber Food", "seoul"));
-//    List<Restaurant> restaurants = repository.findAll();
-
-//    Restaurant restaurant = restaurants.stream()
-//            .filter(r -> r.getId().equals(id)) // 받은 id와 같은 애를 찾아서
-//            .findFirst() // 첫번째 요소를 get
-//           // .get();
-//    .orElse(null); // 찾을 수 없는 경우도 처리하고싶을 때, null을 return하겠다.
-
-   Restaurant restaurant = repository.findById(id);
-
-
-
-
+    Restaurant restaurant = repository.findById(id);
     return restaurant;
   }
 }
