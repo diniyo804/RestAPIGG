@@ -21,3 +21,6 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
+### 참고 사이트
+project git 연동 
+* [intelliJ에서 기존 프로젝트 GitHub 연동하기](https://atoz-develop.tistory.com/entry/IntelliJ%EC%97%90%EC%84%9C-GitGitHub-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EA%B8%B0%EC%A1%B4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0)

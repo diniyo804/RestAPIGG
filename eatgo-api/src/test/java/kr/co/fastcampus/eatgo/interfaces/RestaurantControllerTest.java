@@ -1,13 +1,15 @@
 package kr.co.fastcampus.eatgo.interfaces;
 
 
-import org.junit.jupiter.api.Test;g
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.core.StringContains.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -18,13 +20,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RestaurantControllerTest {
   // controller test
 
-  @Autowired
+  @Autowired // 스프링에서 알아서 객체 생성
   private MockMvc mvc;
 
+  @DisplayName("list content 확인")
   @Test
   public void list() throws Exception {
-    mvc.perform(get("/restaurants")).andExpect(status().isOk())
-            .andExpect(content().string(containString("Bob zip")));
+    mvc.perform(get("/restaurants"))
+            .andExpect(status().isOk())
+            .andExpect(content()
+                    .string(
+                            containsString("\"name\":\"Bob zip\"")))
+            .andExpect(content()
+                    .string(
+                            containsString("\"id\":1004")));
+
+  }
+  @DisplayName("가게 상세")
+  @Test
+  public void detail() throws Exception {
+    mvc.perform(get("/restaurants/1004"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(
+                            containsString("\"name\":\"Bob zip\"")))
+            .andExpect(content()
+                    .string(
+                            containsString("\"id\":1004")));
+
+    mvc.perform(get("/restaurants/2020"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(
+                    containsString("\"name\":\"Cyber Food\"")))
+            .andExpect(content()
+                    .string(
+                            containsString("\"id\":2020")));
 
   }
 
