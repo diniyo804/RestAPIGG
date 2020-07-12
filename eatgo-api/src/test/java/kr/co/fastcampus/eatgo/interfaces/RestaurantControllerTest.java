@@ -2,6 +2,7 @@ package kr.co.fastcampus.eatgo.interfaces;
 
 
 import kr.co.fastcampus.eatgo.domain.RestaurantsRepository;
+import kr.co.fastcampus.eatgo.domain.RestaurantsRepositoryImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,14 +26,12 @@ public class RestaurantControllerTest {
   @Autowired // 스프링에서 알아서 객체 생성
   private MockMvc mvc;
 
-  //controller에 원하는 객체를 주입한다.
-  @SpyBean
+//  @SpyBean
+/* 실질적 구현이 없는 interface를 spy로 넣어 주는 것이므로 테스트 실행시 에러가 난다.
+어떤 구현체를 사용할 건지 명시해주어야한다.
+테스트 시 RestaurantsRepositoryImpl 외의 다른 클래스로 변경이 쉬워짐. */
+  @SpyBean(RestaurantsRepositoryImpl.class)
   private RestaurantsRepository restaurantsRepository;
-  /* 실제 컨트롤러 테스트를위해 web mvc 테스트를 할 땐 제대로 된 저장소를 사용할 수 없기때문에
-  테스트 진행 시 컨트롤러에 직접 의존성을 주입해주어야 한다.
-  spring boot에서는 @SpyBean을 제공한다.
-  controller에 원하는 객체를 주입할 수 있다.
-   */
 
   @DisplayName("list content 확인")
   @Test
