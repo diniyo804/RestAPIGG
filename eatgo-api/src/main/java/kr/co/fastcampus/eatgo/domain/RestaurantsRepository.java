@@ -1,11 +1,19 @@
 package kr.co.fastcampus.eatgo.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+class를 spring이 직접 관리한다.
+RestaurantsRepository를 사용하는 곳에서 직접 객체를 만들지 않고 @Autowired를 붙여주면
+controller를 만들 때 spring이 알아서 repository를 생성해서 넣어준다.
+*/
+@Component
 public class RestaurantsRepository {
-  // restaurant의 Collection, 저장소 즉 Repository라고 한다.
-  // 도메인 레이어에 속한다.
+  // restaurant 의 collection, 저장소 즉 repository 라고 한다.
+  // domain layer 에 속한다.
 
   List<Restaurant> restaurants = new ArrayList<>();
 
